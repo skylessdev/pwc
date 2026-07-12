@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Love Letter — The Platonist Wine Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a; --muted:#444; --hover:#000; --bg:#ffffff; --line:#ededed;
+    --oxblood:#800020;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'EB Garamond', Garamond, 'Times New Roman', serif;
+  }
+  a{color:var(--muted); text-decoration:none;}
+  a:hover{color:var(--hover);}
+  ul{margin:0; padding:0; list-style:none;}
+
+  header{max-width:100%; margin:0 auto;}
+  header .head-inner{padding-top:45px; padding-bottom:34px; text-align:center;}
+  header .logo img{width:220px; display:block; margin:0 auto;}
+
+  main{
+    max-width:1400px; margin:0 auto;
+    padding:0 40px 140px;
+  }
+  .wine-page{
+    display:grid;
+    grid-template-columns:340px 1fr;
+    gap:70px;
+    align-items:start;
+  }
+  .wine-image{text-align:center;}
+  .wine-image img{max-width:100%; filter:drop-shadow(0 10px 22px rgba(0,0,0,.14));}
+
+  .wine-right h1{
+    font-size:18px; letter-spacing:4px; text-transform:uppercase;
+    line-height:24px; margin:0;
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+  }
+  .wine-right h1 .tag{color:var(--oxblood); margin-left:10px; font-size:15px; letter-spacing:3px;}
+  .wine-right h2{
+    font-size:14px; letter-spacing:2px; text-transform:uppercase;
+    margin:6px 0 25px; font-weight:400; color:#777;
+    font-family:'Cormorant Garamond', serif;
+  }
+  .wine-content{margin:25px 0;}
+  .wine-content p{font-size:15px; line-height:1.7; margin:0 0 16px;}
+  .wine-content p.label{
+    font-size:13px; letter-spacing:2px; text-transform:uppercase;
+    margin-bottom:4px; font-weight:600; color:var(--oxblood);
+  }
+  .wine-content em{font-style:italic; font-size:15px;}
+  .wine-content ul{margin:0 0 16px; padding-left:20px; list-style:disc;}
+  .wine-content ul li{font-size:15px; line-height:1.7; margin-bottom:12px;}
+
+  .download-note{
+    display:inline-block; margin-top:10px;
+    text-transform:uppercase; letter-spacing:4px; font-size:13px;
+    color:#717171; border-bottom:1px solid transparent;
+  }
+  .download-note:hover{color:#000; border-bottom-color:#000;}
+
+  @media screen and (max-width:900px){
+    .wine-page{grid-template-columns:1fr; gap:30px;}
+    .wine-image{max-width:280px; margin:0 auto;}
+  }
+
+  footer.bottom-nav{
+    max-width:100%; position:fixed; bottom:0; left:0; width:100%; background:#fff;
+    border-top:1px solid var(--line);
+  }
+  footer.bottom-nav nav{width:100%; padding:20px 0;}
+  footer.bottom-nav ul{display:table; margin:0 auto; text-align:center;}
+  footer.bottom-nav ul li{display:inline-block; padding:0 20px;}
+  footer.bottom-nav ul li a{
+    color:var(--muted); font-size:12px; line-height:22px;
+    text-transform:uppercase; letter-spacing:3px;
+  }
+  @media screen and (max-width:960px){
+    footer.bottom-nav{position:relative;}
+    footer.bottom-nav ul{display:block;}
+    footer.bottom-nav ul li{display:block; padding:9px 25px; text-align:left; border-top:1px solid var(--line);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <a class="logo" href="index.html">
+      <img src="assets/PWC.png" alt="The Platonist Wine Company">
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="wine-page">
+    <div class="wine-image">
+      <img src="assets/loveletter.png" alt="A Love Letter bottle">
+    </div>
+    <div class="wine-right">
+      <h1>A Love Letter</h1>
+      <h2>2025 Vintage</h2>
+
+      <div class="wine-content">
+        <p class="label">Winemaker's Notes</p>
+        <ul>
+          <li>The history of wine is a history of dialogues: Tuscany reimagined Bordeaux varieties without ceasing to be Tuscan.</li>
+          <li> We asked what Stellenbosch might discover in the same dialogue that shaped Tuscany.</li>
+          <li>The result is a serious wine of remarkable complexity, built to age, where old world ideals meet new world mavericks.</li>
+        </ul>
+
+        <p class="label">Tasting Notes</p>
+        <p>Graphite, red currants, subtle tobacco and sweet spice introduce a wine of complexity. The palate is finely textured, framed by polished tannins and an appealing concentration of fruit. Red and black cherries mingle with blackcurrant, carrying impressive intensity while remaining poised and balanced. The finish is long, graceful and persistent, lingering with both fruit and savoury nuance.</p>
+
+      </div>
+
+      <a class="download-note" href="assets/A Love Letter.pdf" target="_blank">Download Technical Sheet</a>
+    </div>
+  </div>
+</main>
+
+<footer class="bottom-nav">
+  <nav>
+    <ul>
+      <li><a href="grand-old-duke.html">The Grand Old Duke</a></li>
+      <li><a href="prelude.html">The Prelude</a></li>
+      <li><a href="memento-mori.html">Memento Mori</a></li>
+      <li><a href="love-letter.html">A Love Letter</a></li>
+      <li><a href="newsletter.html">Newsletter</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</body>
+</html>

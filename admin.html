@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter Submissions — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0a0a0a; --muted:#444; --bg:#fff; --line:#ededed;}
+  *{box-sizing:border-box;}
+  body{margin:0; min-height:100vh; background:var(--bg); color:var(--ink); font-family:'EB Garamond', Garamond, 'Times New Roman', serif;}
+  main{max-width:900px; margin:0 auto; padding:40px;}
+  h1{font-family:'Cormorant Garamond', serif; font-size:24px; letter-spacing:4px; text-transform:uppercase; margin:0 0 20px;}
+  p{font-size:15px; line-height:1.7; color:var(--muted); margin:0 0 20px;}
+  .login{max-width:420px; margin:0 auto;}
+  .login input{width:100%; padding:12px 14px; border:1px solid var(--line); margin-top:14px; font-size:15px;}
+  .login button{margin-top:16px; padding:12px 24px; border:1px solid var(--ink); background:var(--ink); color:#fff; font-family:'Cormorant Garamond', serif; text-transform:uppercase; letter-spacing:3px; cursor:pointer;}
+  table{width:100%; border-collapse:collapse; margin-top:24px;}
+  th,td{padding:12px 10px; border:1px solid var(--line); text-align:left; font-size:15px;}
+  th{background:#fafafa; color:var(--muted); text-transform:uppercase; letter-spacing:2px;}
+  .error{color:#900; margin:20px 0 0;}
+</style>
+</head>
+<body>
+<main>
+  <h1>Newsletter Submissions</h1>
+  <p>Enter the admin secret to view collected submissions.</p>
+  <div class="login" id="loginPane">
+    <input id="adminSecret" type="password" placeholder="Admin secret" aria-label="Admin secret">
+    <button id="loginButton">Load submissions</button>
+    <div class="error" id="loginError" aria-live="polite"></div>
+  </div>
+  <div id="results"></div>
+</main>
+<script>
+  var adminSecretInput = document.getElementById('adminSecret');
+  var loginButton = document.getElementById('loginButton');
+  var loginError = document.getElementById('loginError');
+  var results = document.getElementById('results');
+  var loginPane = document.getElementById('loginPane');
+
+  loginButton.addEventListener('click', function() {
+    loginError.textContent = '';
+    var secret = adminSecretInput.value.trim();
+    if (!secret) {
+      loginError.textContent = 'Enter the admin secret.';
+      return;
+    }
+
+    fetch(`/api/emails?secret=${encodeURIComponent(secret)}`)
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (!data.success) {
+          loginError.textContent = data.error || 'Unable to load submissions.';
+          return;
+        }
+
+        loginPane.style.display = 'none';
+        results.innerHTML = renderTable(data.emails);
+      })
+      .catch(function() {
+        loginError.textContent = 'Unable to load submissions.';
+      });
+  });
+
+  function renderTable(emails) {
+    if (!emails.length) {
+      return '<p>No submissions yet.</p>';
+    }
+    var rows = emails.map(function(item){
+      return '<tr><td>' + escapeHtml(item.email) + '</td><td>' + escapeHtml(item.submitted) + '</td></tr>';
+    }).join('');
+
+    return '<table><thead><tr><th>Email</th><th>Submitted</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  }
+
+  function escapeHtml(text) {
+    return text.replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Platonist Wine Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --muted:#444;
+    --hover:#000;
+    --bg:#ffffff;
+    --line:#ededed;
+    --oxblood:#800020;
+    --indigo:#2d3464;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'EB Garamond', Garamond, 'Times New Roman', serif;
+    font-weight:400;
+    cursor:url("assets/bluebird.png") 16 16, auto;
+  }
+  a{color:var(--muted); text-decoration:none; cursor:pointer;}
+  a:hover{color:var(--hover);}
+  ul{margin:0; padding:0; list-style:none;}
+
+  /* ---------- intro logo-fade overlay ---------- */
+  .home-logo-fade{
+    position:fixed; inset:0;
+    height:100vh; width:100%;
+    z-index:999;
+    background:#fff;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .home-logo-fade img{
+    width:100%;
+    max-width:260px;
+    display:block;
+    opacity:0;
+    transition:opacity 1s ease;
+  }
+  .home-logo-fade img.visible{
+    opacity:1;
+  }
+  .home-logo-fade.done{display:none;}
+
+
+  /* ---------- header ---------- */
+  header{
+    max-width:100%;
+    margin:0 auto;
+    position:relative;
+  }
+  header .head-inner{
+    padding-top:45px;
+    padding-bottom:34px;
+    text-align:center;
+  }
+  header .logo{
+    display:inline-block;
+    width:220px;
+  }
+  header .logo img{width:100%; display:block; margin:0 auto;}
+  .menu-mobile-link{
+    display:none;
+    position:absolute;
+    right:25px; top:38px;
+    width:30px; height:22px;
+    flex-direction:column;
+    justify-content:space-between;
+    cursor:pointer;
+    border:none; background:none; padding:0;
+  }
+  .menu-mobile-link span{display:block; height:2px; background:#000;}
+
+  @media screen and (max-width:995px){
+    header .head-inner{padding-top:34px;}
+    .menu-mobile-link{display:flex;}
+  }
+
+  /* ---------- rotator ---------- */
+  .rotator{
+    position:relative;
+    width:100%;
+    max-width:1400px;
+    margin:0 auto;
+    padding:0 25px;
+    opacity:0;
+    transition:opacity .4s ease-in-out;
+  }
+  .rotator.on{opacity:1;}
+  .rotator .frame{
+    position:relative;
+    width:100%;
+    padding-top:37.5%; /* 1200x450 aspect, like the reference slideshow */
+    overflow:hidden;
+    background:#f4f1ec;
+  }
+  .rotator .slide{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0;
+    transition:opacity 1.1s ease-in-out;
+  }
+  .rotator .slide.active{opacity:1; z-index:2;}
+  .rotator .slide img{
+    max-height:78%;
+    filter:drop-shadow(0 10px 22px rgba(0,0,0,.14));
+  }
+  .rotator-m{display:none;}
+  @media screen and (max-width:960px){
+    .rotator{display:none;}
+    .rotator-m{
+      display:block; width:100%; padding:0 25px;
+      opacity:0; transition:opacity .4s ease-in-out;
+    }
+    .rotator-m.on{opacity:1;}
+    .rotator-m .frame{position:relative; width:100%; padding-top:85.7%; background:#f4f1ec; overflow:hidden;}
+    .rotator-m .slide{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 1.1s ease-in-out;}
+    .rotator-m .slide.active{opacity:1; z-index:2;}
+    .rotator-m .slide img{max-width:62%; max-height:84%; width:auto; height:auto; filter:drop-shadow(0 10px 22px rgba(0,0,0,.14));}
+  }
+
+  main{min-height:1px; padding-bottom:120px;}
+
+  /* ---------- contact section ---------- */
+  .contact-section{
+    max-width:640px;
+    margin:80px auto 0;
+    padding:0 25px 60px;
+    text-align:center;
+    opacity:0;
+    transition:opacity .4s ease-in-out;
+  }
+  .contact-section.on{opacity:1;}
+  .contact-section h2{
+    font-family:'Cormorant Garamond', serif;
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-weight:600;
+    margin:0 0 20px;
+    color:var(--ink);
+  }
+  .contact-section p{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--muted);
+    margin:0 0 12px;
+  }
+  .contact-section a{color:var(--muted);}
+  .contact-section a:hover{color:var(--hover);}
+
+  /* ---------- footer bottom nav ---------- */
+  footer.bottom-nav{
+    max-width:100%;
+    z-index:2;
+    position:fixed;
+    bottom:0; left:0; width:100%;
+    background:#fff;
+  }
+  footer.bottom-nav nav{width:100%; padding:30px 0 0;}
+  footer.bottom-nav ul{display:table; margin:0 auto; text-align:center;}
+  footer.bottom-nav ul li{
+    display:inline-block;
+    position:relative;
+    padding:0 20px;
+    opacity:0;
+    transition:opacity 1.4s linear;
+  }
+  footer.bottom-nav ul li.animate-it{
+    opacity:1;
+  }
+  footer.bottom-nav ul li a{
+    color:var(--muted);
+    font-size:13px;
+    line-height:22px;
+    text-transform:uppercase;
+    letter-spacing:4px;
+  }
+  footer.bottom-nav ul li a:hover{color:var(--hover);}
+  footer.bottom-nav .fineprint{
+    text-align:center;
+    font-size:10px;
+    letter-spacing:2px;
+    color:#aaa;
+    padding:10px 0 18px;
+    text-transform:uppercase;
+  }
+
+  @media screen and (max-width:1150px){
+    footer.bottom-nav ul li{padding:0 12px;}
+  }
+
+  @media screen and (max-width:960px){
+    footer.bottom-nav{
+      position:relative; bottom:0; left:0; padding-top:25px;
+    }
+    footer.bottom-nav nav{height:auto; padding:0 5px 25px;}
+    footer.bottom-nav ul{display:block;}
+    footer.bottom-nav ul li{
+      display:block;
+      padding:9px 25px;
+      opacity:1;
+      animation:none !important;
+      border-top:1px solid var(--line);
+    }
+    footer.bottom-nav ul li:first-child{border-top:0;}
+    footer.bottom-nav ul li a{font-size:16px; letter-spacing:2px; text-transform:uppercase; text-align:left; display:block;}
+  }
+
+  .container{position:relative; box-sizing:border-box; width:100%; background:#fff;}
+</style>
+</head>
+<body>
+
+<div class="home-logo-fade" id="logoFade">
+  <img src="assets/PWC.png" alt="The Platonist Wine Company logo" id="logoFadeImg">
+</div>
+
+<div class="container">
+  <header>
+    <button class="menu-mobile-link" id="mobileTrigger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="head-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/PWC.png" alt="The Platonist Wine Company">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="rotator" id="rotator">
+      <div class="frame">
+        <div class="slide active"><img src="assets/theduke.png" alt="The Grand Old Duke of Tuscany"></div>
+        <div class="slide"><img src="assets/prelude.png" alt="The Prelude"></div>
+        <div class="slide"><img src="assets/mementomori.png" alt="Memento Mori"></div>
+        <div class="slide"><img src="assets/loveletter.png" alt="A Love Letter"></div>
+      </div>
+    </section>
+
+    <section class="rotator-m" id="rotatorM">
+      <div class="frame">
+        <div class="slide active"><img src="assets/theduke.png" alt="The Grand Old Duke of Tuscany"></div>
+        <div class="slide"><img src="assets/prelude.png" alt="The Prelude"></div>
+        <div class="slide"><img src="assets/mementomori.png" alt="Memento Mori"></div>
+        <div class="slide"><img src="assets/loveletter.png" alt="A Love Letter"></div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <h2>Contact</h2>
+      <p>For enquiries and allocation requests,<br>please get in touch.</p>
+      <p><a href="mailto:info@platonist.wine">info@platonist.wine</a></p>
+    </section>
+  </main>
+
+  <footer class="bottom-nav">
+    <nav>
+      <ul id="menu-main">
+        <li data-i="1"><a href="grand-old-duke.html">The Grand Old Duke</a></li>
+        <li data-i="2"><a href="prelude.html">The Prelude</a></li>
+        <li data-i="3"><a href="memento-mori.html">Memento Mori</a></li>
+        <li data-i="4"><a href="love-letter.html">A Love Letter</a></li>
+        <li data-i="5"><a href="newsletter.html">Newsletter</a></li>
+        <li data-i="6"><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="fineprint"> &middot; South Africa</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var fade = document.getElementById('logoFade');
+  var img = document.getElementById('logoFadeImg');
+  var rotator = document.getElementById('rotator');
+  var rotatorM = document.getElementById('rotatorM');
+  var navItems = Array.prototype.slice.call(document.querySelectorAll('footer.bottom-nav ul li'));
+
+  function revealNavSequentially(i){
+    if (i >= navItems.length) return;
+    navItems[i].classList.add('animate-it');
+    setTimeout(function(){ revealNavSequentially(i + 1); }, 350);
+  }
+
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      img.classList.add('visible');
+    }, 200);
+
+    var fadeInDuration = 1600;
+    var holdDuration = 500;
+    var fadeOutDuration = 1000;
+
+    setTimeout(function(){
+      img.classList.remove('visible');
+    }, 200 + fadeInDuration + holdDuration);
+
+    setTimeout(function(){
+      finishIntro();
+    }, 200 + fadeInDuration + holdDuration + fadeOutDuration);
+
+    function finishIntro(){
+      fade.classList.add('done');
+      rotator.classList.add('on');
+      rotatorM.classList.add('on');
+      document.querySelector('.contact-section').classList.add('on');
+      startRotators();
+      revealNavSequentially(0);
+    }
+  });
+  function startRotators(){
+    [rotator, rotatorM].forEach(function(wrap){
+      var slides = wrap.querySelectorAll('.slide');
+      var idx = 0;
+      setInterval(function(){
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+      }, 3200);
+    });
+  }
+
+  // mobile trigger placeholder — on this single-page layout it just
+  // scrolls to the nav, matching the reference site's menu-mobile-link behavior
+  document.getElementById('mobileTrigger').addEventListener('click', function(){
+    document.querySelector('footer.bottom-nav').scrollIntoView({behavior:'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>
