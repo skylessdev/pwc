@@ -132,7 +132,86 @@
 
   main{min-height:1px; padding-bottom:120px;}
 
+  /* ---------- philosophy section ---------- */
+  .philosophy-section{
+    max-width:760px;
+    margin:80px auto 0;
+    padding:0 25px 40px;
+    text-align:left;
+    opacity:0;
+    transition:opacity .4s ease-in-out;
+  }
+  .philosophy-section.on{opacity:1;}
+  .philosophy-section h2{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-weight:600;
+    margin:0 0 22px;
+    color:var(--ink);
+  }
+  .philosophy-section p{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--muted);
+    margin:0 0 18px;
+  }
+  .philosophy-grid{
+    display:grid;
+    grid-template-columns:minmax(260px,320px) 1fr;
+    align-items:start;
+    gap:32px;
+    max-width:100%;
+    margin:0 auto;
+  }
+  .philosophy-image{
+    display:block;
+    width:100%;
+    max-width:100%;
+    margin:0;
+  }
+  .philosophy-image img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:cover;
+    border-radius:4px;
+  }
+  .philosophy-copy{
+    min-width:0;
+  }
+  @media screen and (max-width:940px){
+    .philosophy-grid{
+      grid-template-columns:1fr;
+      gap:24px;
+    }
+    .philosophy-section{
+      padding-bottom:25px;
+    }
+  }
   /* ---------- contact section ---------- */
+  .philosophy-section.on{opacity:1;}
+  .philosophy-section h2{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-weight:600;
+    margin:0 0 22px;
+    color:var(--ink);
+  }
+  .philosophy-section p{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--muted);
+    margin:0 0 18px;
+  }
+  .philosophy-section p.strong{
+    font-weight:600;
+    color:var(--ink);
+  }
+
   .contact-section{
     max-width:640px;
     margin:80px auto 0;
@@ -164,7 +243,7 @@
   footer.bottom-nav{
     max-width:100%;
     z-index:2;
-    position:fixed;
+    position:sticky;
     bottom:0; left:0; width:100%;
     background:#fff;
   }
@@ -263,6 +342,20 @@
       <p>For enquiries and allocation requests,<br>please get in touch.</p>
       <p><a href="mailto:info@platonist.wine">info@platonist.wine</a></p>
     </section>
+
+    <section class="philosophy-section" id="philosophy">
+      <div class="philosophy-grid">
+        <div class="philosophy-image">
+          <img src="assets/vines.jpg" alt="Vineyard landscape">
+        </div>
+        <div class="philosophy-copy">
+          <h2>The grape or the land?</h2>
+          <p>The Platonist Wine Company began with a simple question: When a varietal of grape is cultivated across lands, which specific of their form do they carry with them?</p>
+          <p>In other words: What belongs to the grape and what belongs to the land?</p>
+          <p>For our inaugural 2025 vintage, hand-selected fruit from the rocky granitic slopes of the Helderberg was handled with a minimal-intervention process, bottled in limited releases. The result is wine that captures a moment in time and place, never to be replicated but to last for years to come.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="bottom-nav">
@@ -315,6 +408,7 @@
       fade.classList.add('done');
       rotator.classList.add('on');
       rotatorM.classList.add('on');
+      document.querySelector('.philosophy-section').classList.add('on');
       document.querySelector('.contact-section').classList.add('on');
       startRotators();
       revealNavSequentially(0);

@@ -108,7 +108,7 @@
     <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
     <button type="submit">Subscribe</button>
   </form>
-  <p class="form-note">Emails are submitted to the backend and stored for your review.</p>
+  <p class="form-note">We respect your privacy. Unsubscribe at any time.</p>
   <div class="fade-message" id="newsletterMessage">You've been added to the list.</div>
 </main>
 
@@ -132,6 +132,7 @@
 
     form.addEventListener('submit', function(event){
       event.preventDefault();
+
       var email = form.email.value.trim();
       if (!email) return;
 
@@ -140,17 +141,30 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
       })
-      .then(function(response){ return response.json(); })
+      .then(function(response){
+        return response.json();
+      })
       .then(function(result){
         if (!result.success) {
           note.textContent = result.error || 'Unable to save your email right now.';
           return;
         }
-        note.textContent = result.duplicate ? 'You are already on the list.' : 'You have been added to the list.';
+
+        // Small grey status
+        note.textContent = result.duplicate
+          ? 'Already subscribed.'
+          : 'Submitted successfully.';
+
         form.classList.add('fade-out');
+
         setTimeout(function(){
           form.style.display = 'none';
-          message.textContent = note.textContent;
+
+          // Large confirmation message
+          message.textContent = result.duplicate
+            ? 'You are already on the list.'
+            : 'You have been added to the list.';
+
           message.classList.add('visible');
         }, 300);
       })
