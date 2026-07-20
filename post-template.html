@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Title — The Platonist Wine Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a; --muted:#444; --hover:#000; --bg:#ffffff; --line:#ededed;
+    --oxblood:#800020;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'EB Garamond', Garamond, 'Times New Roman', serif;
+    padding-bottom:120px;
+  }
+  a{color:var(--muted); text-decoration:none;}
+  a:hover{color:var(--hover);}
+
+  header{max-width:100%; margin:0 auto;}
+  header .head-inner{padding-top:45px; padding-bottom:34px; text-align:center;}
+  header .logo img{width:220px; display:block; margin:0 auto;}
+
+  main{max-width:1300px; margin:0 auto; padding:20px 40px 0;}
+  .post-page{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:90px;
+    align-items:start;
+  }
+
+  .post-nav{padding-top:6px;}
+  .post-nav a{
+    display:block;
+    font-size:12px; letter-spacing:2px; text-transform:uppercase;
+    color:#717171; margin-bottom:40px;
+  }
+  .post-nav a:hover{color:#000;}
+
+  .article-text{max-width:720px;}
+  .article-text .topo{
+    font-size:12px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--oxblood); margin:0 0 4px;
+  }
+  .article-text .dato{
+    font-size:13px; letter-spacing:1px; color:#999; margin:0 0 20px;
+  }
+  .article-text h1{
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-style:italic;
+    font-size:32px; line-height:1.25; margin:0 0 8px;
+  }
+  .article-text .byline{
+    font-size:14px; font-style:italic; color:var(--muted); margin:0 0 30px;
+  }
+  .article-text p{font-size:16px; line-height:1.75; margin:0 0 18px;}
+
+  @media screen and (max-width:900px){
+    .post-page{grid-template-columns:1fr; gap:20px;}
+    .post-nav{display:flex; gap:24px;}
+    .post-nav a{margin-bottom:0;}
+  }
+
+  footer.bottom-nav{
+    max-width:100%; position:fixed; bottom:0; left:0; width:100%; background:#fff;
+    border-top:1px solid var(--line);
+  }
+  footer.bottom-nav nav{width:100%; padding:20px 0;}
+  footer.bottom-nav ul{display:table; margin:0 auto; text-align:center; list-style:none; padding:0;}
+  footer.bottom-nav ul li{display:inline-block; padding:0 20px;}
+  footer.bottom-nav ul li a{
+    color:var(--muted); font-size:12px; line-height:22px;
+    text-transform:uppercase; letter-spacing:3px;
+  }
+  @media screen and (max-width:960px){
+    footer.bottom-nav{position:relative;}
+    footer.bottom-nav ul{display:block;}
+    footer.bottom-nav ul li{display:block; padding:9px 25px; text-align:left; border-top:1px solid var(--line);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <a class="logo" href="index.html">
+      <img src="assets/PWC.png" alt="The Platonist Wine Company">
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="post-page">
+
+    <nav class="post-nav">
+      <a href="post-template.html">[ Next ]</a>
+      <a href="post-template.html">[ Previous ]</a>
+    </nav>
+
+    <article class="article-text">
+      <p class="topo">Harvest Journal</p>
+      <p class="dato">Replace with date</p>
+      <h1>Replace with the post title</h1>
+      <p class="byline">Mark Le Roux</p>
+
+      <p>Replace with the opening paragraph of the post — set the scene, the season, or the occasion prompting the note.</p>
+      <p>Replace with the body copy. Keep paragraphs short, in the same restrained voice as the harvest and tasting notes elsewhere on the site.</p>
+      <p>Close with whatever call-to-action fits — an allocation date, a link to a cuvée page, or simply a sign-off.</p>
+    </article>
+
+  </div>
+</main>
+
+<footer class="bottom-nav">
+  <nav>
+    <ul>
+      <li><a href="grand-old-duke.html">The Grand Old Duke</a></li>
+      <li><a href="prelude.html">The Prelude</a></li>
+      <li><a href="memento-mori.html">Memento Mori</a></li>
+      <li><a href="love-letter.html">A Love Letter</a></li>
+      <li><a href="newsletter.html">Newsletter</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</body>
+</html>

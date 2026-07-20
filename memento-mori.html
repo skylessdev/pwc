@@ -59,6 +59,12 @@
   .wine-content ul{margin:0 0 16px; padding-left:20px; list-style:disc;}
   .wine-content ul li{font-size:15px; line-height:1.7; margin-bottom:12px;}
 
+  .audio-player{
+    margin:28px 0 20px; padding:16px 18px; border:1px solid var(--line);
+    background:#fafafa; border-radius:4px;
+  }
+  .audio-player p{margin:0 0 10px; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--oxblood); font-weight:600;}
+  .audio-player audio{width:100%; display:block;}
   .download-note{
     display:inline-block; margin-top:10px;
     text-transform:uppercase; letter-spacing:4px; font-size:13px;
@@ -118,6 +124,14 @@
 
         <p class="label">Tasting Notes</p>
         <p>This wine is a tribute to the Stoics, shaped by slow barrel ageing and careful assembly. The blend of Sangiovese and Cabernet Franc spent 17 months in wood, producing a serious, layered expression with depth, structure and persistence.</p>
+
+        <div class="audio-player">
+          <p>Listen</p>
+          <audio controls preload="metadata">
+            <source src="assets/MementoMori.m4a" type="audio/mp4">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
 
       </div>
 
